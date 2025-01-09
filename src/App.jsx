@@ -1,14 +1,10 @@
-import { useState } from "react";
+import React from "react";
 import "./App.css";
-import { HStack } from "@chakra-ui/react";
-import { Button } from "@/core/ui/button";
 
 function App() {
   return (
     <>
-      <HStack>
-        <Button>Click me</Button>
-      </HStack>
+      <div>hola</div>
     </>
   );
 }
