@@ -109,7 +109,6 @@ function Form() {
           <Input
             type="submit"
             value="Iniciar Sesión"
-            bg="black"
             color="white"
             colorScheme="white"
             onClick={handleLogin}
