@@ -1,1 +1,12 @@
+.navbar {
+  border-bottom: 1px solid #e5e5e5;
+}
 
+h2 {
+  color: #18181b !important;
+}
+
+.btn-user {
+  background: transparent !important;
+  padding: 0.5rem !important;
+}

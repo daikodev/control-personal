@@ -1,0 +1,102 @@
+.css-15cln3k,
+.css-1akouz3 {
+  /* Botones oscuros */
+  color: #fafafa !important;
+  background-color: #18181b !important;
+}
+
+.css-15cln3k:hover,
+.css-1akouz3:hover {
+  /* Botones oscuros */
+  background-color: #18181be6 !important;
+}
+
+.css-1ij3uc1 {
+  /* Botones claros */
+  color: #18181b !important;
+  border-color: #e4e4e7 !important;
+}
+
+.css-1ij3uc1:hover {
+  /* Botones claros */
+  background-color: #f4f4f5 !important;
+}
+
+.css-qluo93 {
+  /* Input */
+  border-color: #e4e4e7 !important;
+}
+
+.css-52dxnr[aria-selected="true"],
+.css-52dxnr[data-selected] {
+  /* Tabs */
+  color: #18181b !important;
+  font-weight: bold;
+}
+
+.css-52dxnr[aria-selected="false"],
+.css-52dxnr[data-selected] {
+  /* Tabs */
+  color: #71717a !important;
+}
+
+.css-1xhq01z {
+  /* Tabs */
+  border-bottom: 1px solid !important;
+  border-color: #e4e4e7 !important;
+}
+
+.css-qluo93,
+.css-1cjy4zv,
+.css-167te90 {
+  /* Inputs */
+  color: #18181b !important;
+}
+
+.css-qluo93:focus-visible,
+.css-1cjy4zv:focus-visible,
+.css-167te90:focus-visible {
+  border-color: transparent !important;
+  box-shadow: 0 0 0 2px #a1a1aa !important;
+}
+
+.css-qluo93::placeholder,
+.css-1cjy4zv::placeholder,
+.css-167te90::placeholder {
+  color: #71717a !important;
+}
+.css-gv1iwz {
+  /* Input - Icon Search */
+  color: #71717a !important;
+}
+
+.css-1hzyiq5 {
+  /* Iconos */
+  margin-left: 0 !important;
+}
+
+.css-69azx8 {
+  /* TablaContainer */
+  border: 1px solid #e4e4e7 !important;
+  border-bottom: 0px !important;
+}
+
+.css-1zts0j {
+  /* th */
+  color: #71717a !important;
+}
+
+.css-xumdn4 {
+  /* td */
+  color: #18181b !important;
+  border-color: #e4e4e7 !important;
+}
+
+.css-y7jzs3 {
+  /* Botones de menu */
+  color: #18181b !important;
+}
+
+.css-g6pte {
+  color: #18181b;
+}
