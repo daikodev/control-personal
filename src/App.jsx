@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import "./CustomChakraStyles.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthLogin from "./auth/AuthLogin";
 import Dashboard from "./pages/Dashboard";
