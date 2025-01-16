@@ -24,6 +24,7 @@ import {
   TabPanels,
   Tab,
   TabPanel,
+  Flex
 } from "@chakra-ui/react";
 import {
   ChevronDownIcon,
@@ -32,10 +33,11 @@ import {
   Search2Icon,
   CheckIcon,
 } from "@chakra-ui/icons";
-import AddUserIcon from "../../icons/AddUserIcon";
 import PDFIcon from "../../icons/PDFIcon";
 import ExcelIcon from "../../icons/ExcelIcon";
 import DotsIcon from "../../icons/DotsIcon";
+import Register from "./modals/Register";
+import Edition from "./modals/Edition";
 
 function CustomTable() {
   return (
@@ -45,16 +47,10 @@ function CustomTable() {
       </Heading>
 
       <div className="row justify-content-between mb-4">
-        <div className="col-xl-9 mt-2">
-          <Button
-            color="white"
-            colorScheme="white"
-            me="2"
-            leftIcon={<AddUserIcon></AddUserIcon>}
-            className="mt-2 mt-sm-0 mt-md-0 mt-lg-0 mt-xl-0 mt-xxl-0"
-          >
-            Registrar Usuario
-          </Button>
+      
+        <div className="col-xl-9 d-flex align-items-center">
+          <Register >
+          </Register>
           <Button
             bg="white"
             color="black"
@@ -75,6 +71,7 @@ function CustomTable() {
           >
             Descargar Excel
           </Button>
+          
         </div>
 
         <div className="col-xl-3 mt-2">
@@ -88,6 +85,7 @@ function CustomTable() {
             />
           </InputGroup>
         </div>
+       
       </div>
 
       <Tabs>
@@ -120,21 +118,7 @@ function CustomTable() {
                     </Td>
 
                     <Td>
-                      <Menu>
-                        <MenuButton
-                          as={Button}
-                          rightIcon={<DotsIcon></DotsIcon>}
-                        ></MenuButton>
-                        <MenuList>
-                          <MenuItem>
-                            <EditIcon me="1.5"></EditIcon>Editar
-                          </MenuItem>
-                          <MenuItem color="red">
-                            <NotAllowedIcon me="1.5"></NotAllowedIcon>
-                            Desactivar
-                          </MenuItem>
-                        </MenuList>
-                      </Menu>
+                      <Edition></Edition>
                     </Td>
                   </Tr>
                   <Tr>
@@ -146,21 +130,7 @@ function CustomTable() {
                       <Badge colorScheme="purple">Sede 2</Badge>
                     </Td>
                     <Td>
-                      <Menu>
-                        <MenuButton
-                          as={Button}
-                          rightIcon={<DotsIcon></DotsIcon>}
-                        ></MenuButton>
-                        <MenuList>
-                          <MenuItem>
-                            <EditIcon me="1.5"></EditIcon>Editar
-                          </MenuItem>
-                          <MenuItem color="red">
-                            <NotAllowedIcon me="1.5"></NotAllowedIcon>
-                            Desactivar
-                          </MenuItem>
-                        </MenuList>
-                      </Menu>
+                     <Edition></Edition>
                     </Td>
                   </Tr>
                 </Tbody>
