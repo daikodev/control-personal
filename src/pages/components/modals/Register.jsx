@@ -98,10 +98,10 @@ function Register() {
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Guardar
+            <Button onClick={onClose} mr={3}>
+              Cancelar
             </Button>
-            <Button onClick={onClose}>Cancelar</Button>
+            <Button colorScheme="green">Registrar</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

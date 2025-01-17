@@ -31,21 +31,17 @@ function Edition() {
   const openEditModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
- 
-
   return (
     <div>
       <Menu>
-        <MenuButton as={Button} rightIcon={<DotsIcon />}>
-        </MenuButton>
+        <MenuButton as={Button} rightIcon={<DotsIcon />}></MenuButton>
         <MenuList>
           <MenuItem onClick={openEditModal}>
-            <EditIcon me="1.5"/> Editar
+            <EditIcon me="1.5" /> Editar
           </MenuItem>
-         <Desactive></Desactive>
+          <Desactive></Desactive>
         </MenuList>
       </Menu>
-
 
       <Modal isOpen={isOpen} onClose={closeModal} initialFocusRef={initialRef}>
         <ModalOverlay />
@@ -86,7 +82,10 @@ function Edition() {
 
             <FormControl mt={4} hidden>
               <FormLabel>Estado</FormLabel>
-              <Select value={estado} onChange={(e) => setEstado(e.target.value)}>
+              <Select
+                value={estado}
+                onChange={(e) => setEstado(e.target.value)}
+              >
                 <option value="0">Inactivo</option>
                 <option value="1">Activo</option>
               </Select>
@@ -102,11 +101,11 @@ function Edition() {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={closeModal}>
-              Guardar
-            </Button>
-            <Button variant="ghost" onClick={closeModal}>
+            <Button onClick={closeModal} mr={3}>
               Cancelar
+            </Button>
+            <Button colorScheme="yellow" onClick={closeModal}>
+              Guardar Cambios
             </Button>
           </ModalFooter>
         </ModalContent>
