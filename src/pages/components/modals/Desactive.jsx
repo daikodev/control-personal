@@ -1,5 +1,5 @@
-import React from 'react'
-import { useDisclosure } from '@chakra-ui/react';
+import React from "react";
+import { useDisclosure } from "@chakra-ui/react";
 import {
   Button,
   AlertDialog,
@@ -12,32 +12,32 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import { NotAllowedIcon } from '@chakra-ui/icons';
+import { NotAllowedIcon } from "@chakra-ui/icons";
 function Desactive() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
   return (
     <div>
-    <MenuItem color="red" onClick={onOpen}>
-    <NotAllowedIcon me="1.5"/>
-      Desactivar
-    </MenuItem >
+      <MenuItem color="red" onClick={onOpen}>
+        <NotAllowedIcon me="1.5" />
+        Desactivar
+      </MenuItem>
 
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
         onClose={onClose}
-        isCentered  
+        isCentered
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+            <AlertDialogHeader fontSize="lg">
               Desactivar Cliente
             </AlertDialogHeader>
             <AlertDialogBody>
-            ¿Está seguro de desactivar a este empleado?
+              ¿Está seguro de desactivar a este empleado?
             </AlertDialogBody>
             <AlertDialogFooter>
               <Button ref={cancelRef} onClick={onClose}>

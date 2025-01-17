@@ -24,7 +24,7 @@ import {
   TabPanels,
   Tab,
   TabPanel,
-  Flex
+  Flex,
 } from "@chakra-ui/react";
 import {
   ChevronDownIcon,
@@ -47,10 +47,8 @@ function CustomTable() {
       </Heading>
 
       <div className="row justify-content-between mb-4">
-      
         <div className="col-xl-9 d-flex align-items-center">
-          <Register >
-          </Register>
+          <Register></Register>
           <Button
             bg="white"
             color="black"
@@ -71,7 +69,6 @@ function CustomTable() {
           >
             Descargar Excel
           </Button>
-          
         </div>
 
         <div className="col-xl-3 mt-2">
@@ -85,7 +82,6 @@ function CustomTable() {
             />
           </InputGroup>
         </div>
-       
       </div>
 
       <Tabs>
@@ -116,7 +112,6 @@ function CustomTable() {
                     <Td>
                       <Badge colorScheme="blue">Sede 1</Badge>
                     </Td>
-
                     <Td>
                       <Edition></Edition>
                     </Td>
@@ -130,7 +125,7 @@ function CustomTable() {
                       <Badge colorScheme="purple">Sede 2</Badge>
                     </Td>
                     <Td>
-                     <Edition></Edition>
+                      <Edition></Edition>
                     </Td>
                   </Tr>
                 </Tbody>

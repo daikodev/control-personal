@@ -1,5 +1,5 @@
-import React from 'react';
-import { useDisclosure } from '@chakra-ui/react';
+import React from "react";
+import { useDisclosure } from "@chakra-ui/react";
 import {
   Menu,
   MenuButton,
@@ -12,8 +12,8 @@ import {
   AlertDialogHeader,
   AlertDialogBody,
   AlertDialogFooter,
-} from '@chakra-ui/react';
-import { CheckIcon } from '@chakra-ui/icons';
+} from "@chakra-ui/react";
+import { CheckIcon } from "@chakra-ui/icons";
 import DotsIcon from "../../../icons/DotsIcon";
 
 function Activate() {
@@ -23,7 +23,7 @@ function Activate() {
   return (
     <div>
       <Menu>
-        <MenuButton as={Button}  rightIcon={<DotsIcon />}></MenuButton >
+        <MenuButton as={Button} rightIcon={<DotsIcon />}></MenuButton>
         <MenuList>
           <MenuItem color="green" onClick={onOpen}>
             <CheckIcon me="2.5" />
@@ -37,13 +37,11 @@ function Activate() {
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
         onClose={onClose}
-        isCentered  // Asegura que la alerta esté centrada
+        isCentered // Asegura que la alerta esté centrada
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Activar Cliente
-            </AlertDialogHeader>
+            <AlertDialogHeader fontSize="lg">Activar Cliente</AlertDialogHeader>
             <AlertDialogBody>
               ¿Está seguro de activar a este empleado?
             </AlertDialogBody>
