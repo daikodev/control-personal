@@ -18,7 +18,8 @@ import {
   FormLabel,
   Select,
 } from "@chakra-ui/react";
-import { EditIcon, NotAllowedIcon } from "@chakra-ui/icons";
+import { EditIcon } from "@chakra-ui/icons";
+import Desactive from "./Desactive";
 
 function Edition() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,27 +31,18 @@ function Edition() {
   const openEditModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  const handleDeactivate = () => {
-    alert("Usuario desactivado");
-  };
+ 
 
   return (
     <div>
-
       <Menu>
         <MenuButton as={Button} rightIcon={<DotsIcon />}>
-
         </MenuButton>
         <MenuList>
-
           <MenuItem onClick={openEditModal}>
-            <EditIcon me="1.5" /> Editar
+            <EditIcon me="1.5"/> Editar
           </MenuItem>
-
-
-          <MenuItem color="red" onClick={handleDeactivate}>
-            <NotAllowedIcon me="1.5" /> Desactivar
-          </MenuItem>
+         <Desactive></Desactive>
         </MenuList>
       </Menu>
 
@@ -92,7 +84,7 @@ function Edition() {
               </Select>
             </FormControl>
 
-            <FormControl mt={4}>
+            <FormControl mt={4} hidden>
               <FormLabel>Estado</FormLabel>
               <Select value={estado} onChange={(e) => setEstado(e.target.value)}>
                 <option value="0">Inactivo</option>

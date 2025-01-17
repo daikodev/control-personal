@@ -35,9 +35,9 @@ import {
 } from "@chakra-ui/icons";
 import PDFIcon from "../../icons/PDFIcon";
 import ExcelIcon from "../../icons/ExcelIcon";
-import DotsIcon from "../../icons/DotsIcon";
 import Register from "./modals/Register";
 import Edition from "./modals/Edition";
+import Activate from "./modals/Activate";
 
 function CustomTable() {
   return (
@@ -161,18 +161,7 @@ function CustomTable() {
                     </Td>
 
                     <Td>
-                      <Menu>
-                        <MenuButton
-                          as={Button}
-                          rightIcon={<DotsIcon></DotsIcon>}
-                        ></MenuButton>
-                        <MenuList>
-                          <MenuItem color="green">
-                            <CheckIcon me="1.5"></CheckIcon>
-                            Activar
-                          </MenuItem>
-                        </MenuList>
-                      </Menu>
+                      <Activate></Activate>
                     </Td>
                   </Tr>
                 </Tbody>
