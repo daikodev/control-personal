@@ -33,18 +33,16 @@ function Desactive() {
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg">
-              Desactivar Cliente
-            </AlertDialogHeader>
+            <AlertDialogHeader fontSize="lg">¿Estás seguro?</AlertDialogHeader>
             <AlertDialogBody>
-              ¿Está seguro de desactivar a este empleado?
+              Estás a punto de desactivar a este empleado.
             </AlertDialogBody>
             <AlertDialogFooter>
               <Button ref={cancelRef} onClick={onClose}>
                 Cancelar
               </Button>
-              <Button colorScheme="red" onClick={onClose} ml={3}>
-                Desactivar
+              <Button colorScheme="blue" onClick={onClose} ml={3}>
+                Aceptar
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

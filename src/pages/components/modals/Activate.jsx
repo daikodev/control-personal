@@ -41,16 +41,16 @@ function Activate() {
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg">Activar Cliente</AlertDialogHeader>
+            <AlertDialogHeader fontSize="lg">¿Estás seguro?</AlertDialogHeader>
             <AlertDialogBody>
-              ¿Está seguro de activar a este empleado?
+              Estás a punto de activar a este empleado.
             </AlertDialogBody>
             <AlertDialogFooter>
               <Button ref={cancelRef} onClick={onClose}>
                 Cancelar
               </Button>
-              <Button colorScheme="green" onClick={onClose} ml={3}>
-                Activar
+              <Button colorScheme="blue" onClick={onClose} ml={3}>
+                Aceptar
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
