@@ -69,7 +69,7 @@ function Form() {
       >
         <div className="col-10">
           <Heading as="h2" size="xl" noOfLines={1}>
-            Bienvenido, Tilín
+            Bienvenido!
           </Heading>
 
           <div className="d-flex flex-column form-group my-4">
