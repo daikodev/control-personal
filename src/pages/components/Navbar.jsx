@@ -34,7 +34,10 @@ function Navbar() {
         </a>
         <Menu>
           <MenuButton as={Button} className="btn-user">
-            <Avatar name={username} src="https://bit.ly/prosper-baba" />
+            <Avatar
+              name={username}
+              src="https://i.pinimg.com/736x/d4/7b/d6/d47bd668fa496bfc233c440460686d2c.jpg"
+            />
           </MenuButton>
           <MenuList>
             <MenuItem onClick={handleLogout}>Cerrar Sesión</MenuItem>
