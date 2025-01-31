@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Table,
   Thead,
@@ -33,6 +34,10 @@ import {
   Search2Icon,
   CheckIcon,
 } from "@chakra-ui/icons";
+import {
+  getEmployeesActive,
+  getEmployeesInactive,
+} from "../../services/employeeService";
 import PDFIcon from "../../icons/PDFIcon";
 import ExcelIcon from "../../icons/ExcelIcon";
 import Register from "./modals/Register";
@@ -40,6 +45,33 @@ import Edition from "./modals/Edition";
 import Activate from "./modals/Activate";
 
 function CustomTable() {
+  const [employeesActive, setEmployeesActive] = useState([]);
+  const [employeesInactive, setEmployeesInactive] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    handleEmployeesActive();
+    handleEmployeesInactive();
+  }, []);
+
+  const handleEmployeesActive = async () => {
+    try {
+      const data = await getEmployeesActive();
+      setEmployeesActive(data);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleEmployeesInactive = async () => {
+    try {
+      const data = await getEmployeesInactive();
+      setEmployeesInactive(data);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return (
     <div className="container-fluid px-4">
       <Heading as="h2" size="lg" noOfLines={1} mt="5" mb="3">
@@ -104,30 +136,28 @@ function CustomTable() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  <Tr>
-                    <Td>Juan Pérez</Td>
-                    <Td>12345678</Td>
-                    <Td>juan.perez@example.com</Td>
-                    <Td>Contador</Td>
-                    <Td>
-                      <Badge colorScheme="blue">Sede 1</Badge>
-                    </Td>
-                    <Td>
-                      <Edition></Edition>
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Juan Pérez</Td>
-                    <Td>12345678</Td>
-                    <Td>juan.perez@example.com</Td>
-                    <Td>Secretario</Td>
-                    <Td>
-                      <Badge colorScheme="purple">Sede 2</Badge>
-                    </Td>
-                    <Td>
-                      <Edition></Edition>
-                    </Td>
-                  </Tr>
+                  {employeesActive.map((empA) => (
+                    <Tr key={empA.id}>
+                      <Td>{empA.nombres}</Td>
+                      <Td>{empA.dni}</Td>
+                      <Td>{empA.email}</Td>
+                      <Td>{empA.rol}</Td>
+                      <Td>
+                        <Badge
+                          colorScheme={
+                            empA.sede === "Sede 1" ? "blue" : "purple"
+                          }
+                        >
+                          {empA.sede}
+                        </Badge>
+                      </Td>
+                      <Td>
+                        <Flex>
+                          <Edition employeeActive={empA}></Edition>
+                        </Flex>
+                      </Td>
+                    </Tr>
+                  ))}
                 </Tbody>
               </Table>
             </TableContainer>
@@ -146,19 +176,28 @@ function CustomTable() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  <Tr>
-                    <Td>Juan Pérez</Td>
-                    <Td>12345678</Td>
-                    <Td>juan.perez@example.com</Td>
-                    <Td>Contador</Td>
-                    <Td>
-                      <Badge colorScheme="blue">Sede 1</Badge>
-                    </Td>
-
-                    <Td>
-                      <Activate></Activate>
-                    </Td>
-                  </Tr>
+                  {employeesInactive.map((empI) => (
+                    <Tr key={empI.id}>
+                      <Td>{empI.nombres}</Td>
+                      <Td>{empI.dni}</Td>
+                      <Td>{empI.email}</Td>
+                      <Td>{empI.rol}</Td>
+                      <Td>
+                        <Badge
+                          colorScheme={
+                            empI.sede === "Sede 1" ? "blue" : "purple"
+                          }
+                        >
+                          {empI.sede}
+                        </Badge>
+                      </Td>
+                      <Td>
+                        <Flex>
+                          <Edition employeeInactive={empI}></Edition>
+                        </Flex>
+                      </Td>
+                    </Tr>
+                  ))}
                 </Tbody>
               </Table>
             </TableContainer>
@@ -168,29 +207,29 @@ function CustomTable() {
 
       <div className="container col-xl-10 d-flex justify-content-center mt-5">
         <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
+          <ul className="pagination">
+            <li className="page-item">
+              <a className="page-link" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item">
-              <a class="page-link" href="#">
+            <li className="page-item">
+              <a className="page-link" href="#">
                 1
               </a>
             </li>
-            <li class="page-item">
-              <a class="page-link" href="#">
+            <li className="page-item">
+              <a className="page-link" href="#">
                 2
               </a>
             </li>
-            <li class="page-item">
-              <a class="page-link" href="#">
+            <li className="page-item">
+              <a className="page-link" href="#">
                 3
               </a>
             </li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+            <li className="page-item">
+              <a className="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
