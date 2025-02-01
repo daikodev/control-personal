@@ -1,5 +1,5 @@
 import React from "react";
-import CustomTable from "./components/Table";
+import Panel from "./components/Panel";
 import Navbar from "./components/Navbar";
 
 function Dashboard() {
@@ -7,9 +7,8 @@ function Dashboard() {
     <>
       <main>
         <Navbar></Navbar>
-        <CustomTable></CustomTable>
+        <Panel></Panel>
       </main>
-      ;
     </>
   );
 }
