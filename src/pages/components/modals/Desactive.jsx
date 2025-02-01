@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 
 import { NotAllowedIcon } from "@chakra-ui/icons";
-function Desactive() {
+function Desactive({ employee }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
   return (

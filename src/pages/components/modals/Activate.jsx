@@ -16,28 +16,22 @@ import {
 import { CheckIcon } from "@chakra-ui/icons";
 import DotsIcon from "../../../icons/DotsIcon";
 
-function Activate() {
+function Activate({ employee }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
 
   return (
     <div>
-      <Menu>
-        <MenuButton as={Button} rightIcon={<DotsIcon />}></MenuButton>
-        <MenuList>
-          <MenuItem color="green" onClick={onOpen}>
-            <CheckIcon me="2.5" />
-            Activar
-          </MenuItem>
-        </MenuList>
-      </Menu>
+      <MenuItem color="green" onClick={onOpen}>
+        <CheckIcon me="2.5" />
+        Activar
+      </MenuItem>
 
-      {/* Dialogo de confirmación */}
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
         onClose={onClose}
-        isCentered // Asegura que la alerta esté centrada
+        isCentered
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
