@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
-import CustomTable from "../Table";
 import {
   Modal,
   ModalOverlay,
