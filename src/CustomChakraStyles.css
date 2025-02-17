@@ -9,6 +9,8 @@
 .css-1akouz3:hover {
   /* Botones oscuros */
   background-color: #18181be6 !important;
+  transform: scale(0.99);
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 .css-1ij3uc1 {
@@ -20,6 +22,8 @@
 .css-1ij3uc1:hover {
   /* Botones claros */
   background-color: #f4f4f5 !important;
+  transform: scale(0.99);
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 .css-qluo93 {

@@ -13,15 +13,23 @@ import {
   InputLeftElement,
   Input,
   Button,
+  background,
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import {
   getEmployeesActive,
   getEmployeesInactive,
+  getEmployeesActiveDownload,
 } from "../../services/employeeService";
 
 import PDFIcon from "../../icons/PDFIcon";
 import ExcelIcon from "../../icons/ExcelIcon";
+
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import TableHeader from "./table/TableHeader";
+import { color } from "framer-motion";
+pdfMake.addVirtualFileSystem(pdfFonts);
 
 const ITEMS_PER_PAGE = 7;
 
@@ -59,6 +67,61 @@ function Panel() {
     }
   };
 
+  const generatePDFActives = async () => {
+    try {
+      const data = await getEmployeesActiveDownload();
+
+      const docDefinition = {
+        content: [
+          { text: "REPORTE DE EMPLEADOS ACTIVOS", style: "header" },
+          {
+            table: {
+              headerRows: 1,
+              body: [
+                [
+                  { text: "ID", style: "tableHeader" },
+                  { text: "NOMBRES", style: "tableHeader" },
+                  { text: "DNI", style: "tableHeader" },
+                  { text: "CORREO", style: "tableHeader" },
+                  { text: "ROL", style: "tableHeader" },
+                  { text: "SEDE", style: "tableHeader" },
+                ],
+                ...data.map((employee) => [
+                  employee.id,
+                  employee.nombres,
+                  employee.dni,
+                  employee.email,
+                  employee.rol,
+                  employee.sede,
+                ]),
+              ],
+            },
+          },
+        ],
+
+        styles: {
+          header: {
+            fontSize: 18,
+            bold: true,
+            marginBottom: 10,
+            alignment: "center",
+          },
+          tableHeader: {
+            bold: true,
+            color: "white",
+            fillColor: "#a1021f",
+          },
+        },
+      };
+
+      pdfMake
+        .createPdf(docDefinition)
+        .download("reporte-empleados-activos.pdf");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className="container-fluid px-4">
       <Heading as="h2" size="lg" noOfLines={1} mt="5" mb="3">
@@ -75,6 +138,7 @@ function Panel() {
             leftIcon={<PDFIcon></PDFIcon>}
             me="2"
             className="mt-2 mt-sm-0 mt-md-0 mt-lg-0 mt-xl-0 mt-xxl-0"
+            onClick={generatePDFActives}
           >
             Descargar PDF
           </Button>

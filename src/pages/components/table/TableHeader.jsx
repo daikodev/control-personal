@@ -6,7 +6,7 @@ function TableHeader() {
     <Tr>
       <Th>Nombres</Th>
       <Th>Dni</Th>
-      <Th>Email</Th>
+      <Th>Correo</Th>
       <Th>Rol</Th>
       <Th>Sede</Th>
       <Th>Acciones</Th>
