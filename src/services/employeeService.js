@@ -17,3 +17,27 @@ export const getEmployeesInactive = async (page, size) => {
 
   return await response.json();
 };
+
+export const saveEmployee = async (employee) => {
+  const url = `${API_URL}/guardar`;
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(employee)
+  });
+
+  if (!response.ok) throw new Error("Error al registrar el empleado");
+
+  return await response.json();
+}
+
+export const getEmployeesActiveDownload = async () => {
+  const url = '${API_URL}/activos/download';
+  const response = await fetch(url);
+
+  if (!response.ok) throw new Error("Error al obtener los empleados");
+
+  return await response.json();
+};
