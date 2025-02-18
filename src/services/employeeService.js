@@ -44,3 +44,12 @@ export const updateEmployee = async (employee) => {
   if (!response.ok) throw new Error("Error al actualizar el empleado");
   return await response.json();
 };
+
+export const getEmployeeByDNI = async (employee) => {
+  const url = `${API_URL}/buscar/${employee.dni}`;
+  const response = await fetch(url);
+
+  if (!response.ok) throw new Error("Error al obtener los empleados");
+
+  return await response.json();
+};
