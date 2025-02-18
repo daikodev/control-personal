@@ -14,13 +14,13 @@ import {
   getEmployeesActive,
   getEmployeesActiveDownload,
 } from "../../services/employeeService";
-
 import PDFIcon from "../../icons/PDFIcon";
 import ExcelIcon from "../../icons/ExcelIcon";
-
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.addVirtualFileSystem(pdfFonts);
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 const ITEMS_PER_PAGE = 7;
 
@@ -48,13 +48,13 @@ function Panel() {
     handleEmployeesActive(pageActive);
   };
 
-  const generatePDFActives = async () => {
+  const generatePDF = async () => {
     try {
       const data = await getEmployeesActiveDownload();
 
       const docDefinition = {
         content: [
-          { text: "REPORTE DE EMPLEADOS ACTIVOS", style: "header" },
+          { text: "REPORTE DE EMPLEADOS", style: "header" },
           {
             table: {
               headerRows: 1,
@@ -95,12 +95,25 @@ function Panel() {
         },
       };
 
-      pdfMake
-        .createPdf(docDefinition)
-        .download("reporte-empleados-activos.pdf");
+      pdfMake.createPdf(docDefinition).download("reporte-empleados.pdf");
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const generateExcel = async () => {
+    const data = await getEmployeesActiveDownload();
+
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Reporte de Empleados");
+
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const dataBlob = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+
+    saveAs(dataBlob, "reporte-empleados.xlsx");
   };
 
   return (
@@ -119,7 +132,7 @@ function Panel() {
             leftIcon={<PDFIcon></PDFIcon>}
             me="2"
             className="mt-2 mt-sm-0 mt-md-0 mt-lg-0 mt-xl-0 mt-xxl-0"
-            onClick={generatePDFActives}
+            onClick={generatePDF}
           >
             Descargar PDF
           </Button>
@@ -130,6 +143,7 @@ function Panel() {
             leftIcon={<ExcelIcon></ExcelIcon>}
             me="2"
             className="mt-2 mt-sm-0 mt-md-0 mt-lg-0 mt-xl-0 mt-xxl-0"
+            onClick={generateExcel}
           >
             Descargar Excel
           </Button>
