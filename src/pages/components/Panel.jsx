@@ -67,6 +67,11 @@ function Panel() {
     }
   };
 
+  const refreshData = () => {
+    handleEmployeesActive(pageActive);
+    handleEmployeesInactive(pageInactive);
+  };
+
   const generatePDFActives = async () => {
     try {
       const data = await getEmployeesActiveDownload();
@@ -130,7 +135,7 @@ function Panel() {
 
       <div className="row justify-content-between mb-4">
         <div className="col-xl-9 d-flex align-items-center">
-          <Register></Register>
+          <Register refreshData={refreshData}></Register>
           <Button
             bg="white"
             color="black"
