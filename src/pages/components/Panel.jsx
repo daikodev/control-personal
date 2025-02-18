@@ -4,21 +4,14 @@ import Pagination from "./table/Pagination";
 import Register from "./modals/Register";
 import {
   Heading,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
   InputGroup,
   InputLeftElement,
   Input,
   Button,
-  background,
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import {
   getEmployeesActive,
-  getEmployeesInactive,
   getEmployeesActiveDownload,
 } from "../../services/employeeService";
 
@@ -27,25 +20,19 @@ import ExcelIcon from "../../icons/ExcelIcon";
 
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import TableHeader from "./table/TableHeader";
-import { color } from "framer-motion";
 pdfMake.addVirtualFileSystem(pdfFonts);
 
 const ITEMS_PER_PAGE = 7;
 
 function Panel() {
   const [employeesActive, setEmployeesActive] = useState([]);
-  const [employeesInactive, setEmployeesInactive] = useState([]);
   // Paginación
   const [pageActive, setPageActive] = useState(0);
-  const [pageInactive, setPageInactive] = useState(0);
   const [totalPagesActive, setTotalPagesActive] = useState(1);
-  const [totalPagesInactive, setTotalPagesInactive] = useState(1);
 
   useEffect(() => {
     handleEmployeesActive(pageActive);
-    handleEmployeesInactive(pageInactive);
-  }, [pageActive, pageInactive]);
+  }, [pageActive]);
 
   const handleEmployeesActive = async (page) => {
     try {
@@ -57,19 +44,8 @@ function Panel() {
     }
   };
 
-  const handleEmployeesInactive = async (page) => {
-    try {
-      const data = await getEmployeesInactive(page, ITEMS_PER_PAGE);
-      setEmployeesInactive(data.content);
-      setTotalPagesInactive(data.totalPages);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   const refreshData = () => {
     handleEmployeesActive(pageActive);
-    handleEmployeesInactive(pageInactive);
   };
 
   const generatePDFActives = async () => {
@@ -172,28 +148,11 @@ function Panel() {
         </div>
       </div>
 
-      <Tabs>
-        <TabList>
-          <Tab>Activos</Tab>
-          <Tab>Inactivos</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel px="0">
-            <EmployeeTable employees={employeesActive}></EmployeeTable>
-            <Pagination
-              pageCount={totalPagesActive}
-              onPageChange={setPageActive}
-            ></Pagination>
-          </TabPanel>
-          <TabPanel px="0">
-            <EmployeeTable employees={employeesInactive}></EmployeeTable>
-            <Pagination
-              pageCount={totalPagesInactive}
-              onPageChange={setPageInactive}
-            ></Pagination>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+      <EmployeeTable employees={employeesActive}></EmployeeTable>
+      <Pagination
+        pageCount={totalPagesActive}
+        onPageChange={setPageActive}
+      ></Pagination>
     </div>
   );
 }
