@@ -24,7 +24,7 @@ import { EditIcon } from "@chakra-ui/icons";
 import Desactive from "./Desactive";
 import Active from "./Activate";
 
-function Edition({ employee, estadoEmpleado }) {
+function Edition({ employee, estadoEmpleado, refreshData }) {
   const [isOpen, setIsOpen] = useState(false);
   const [rol, setRol] = useState(employee.rol || "");
   const [sede, setSede] = useState(employee.sede || "");
@@ -103,6 +103,7 @@ function Edition({ employee, estadoEmpleado }) {
         sede,
         password,
       });
+
       toast({
         title: "Empleado actualizado",
         description: "Los datos del empleado se actualizaron correctamente.",
@@ -111,6 +112,7 @@ function Edition({ employee, estadoEmpleado }) {
         isClosable: true,
       });
 
+      refreshData();
       closeModal();
     } catch (error) {
       toast({

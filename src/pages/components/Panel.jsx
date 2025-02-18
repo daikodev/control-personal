@@ -188,6 +188,7 @@ function Panel() {
 
       <EmployeeTable
         employees={searchedEmployee ? [searchedEmployee] : employeesActive}
+        refreshData={refreshData}
       ></EmployeeTable>
       <Pagination
         pageCount={totalPagesActive}

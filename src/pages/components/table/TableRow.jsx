@@ -2,7 +2,7 @@ import React from "react";
 import Edition from "../modals/Edition";
 import { Tr, Td, Badge, Flex } from "@chakra-ui/react";
 
-const TableRow = ({ employee }) => (
+const TableRow = ({ employee, refreshData }) => (
   <Tr>
     <Td>{employee.nombres}</Td>
     <Td>{employee.dni}</Td>
@@ -15,7 +15,11 @@ const TableRow = ({ employee }) => (
     </Td>
     <Td>
       <Flex>
-        <Edition employee={employee} estadoEmpleado={employee.estado}></Edition>
+        <Edition
+          employee={employee}
+          estadoEmpleado={employee.estado}
+          refreshData={refreshData}
+        ></Edition>
       </Flex>
     </Td>
   </Tr>
