@@ -25,7 +25,7 @@ export const saveEmployee = async (employee) => {
 };
 
 export const getEmployeesActiveDownload = async () => {
-  const url = "${API_URL}/activos/download";
+  const url = `${API_URL}/activos/download`;
   const response = await fetch(url);
 
   if (!response.ok) throw new Error("Error al obtener los empleados");
