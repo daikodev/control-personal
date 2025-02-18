@@ -1,5 +1,11 @@
 import React, { useState, useRef } from "react";
-import { Button, FormControl, FormLabel, Input, useToast } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  useToast,
+} from "@chakra-ui/react";
 import {
   Modal,
   ModalOverlay,
@@ -29,7 +35,7 @@ function Register({ refreshData }) {
     rol: "",
     sede: "",
     password: "",
-    general: ""
+    general: "",
   });
   const toast = useToast();
 
@@ -40,7 +46,10 @@ function Register({ refreshData }) {
   const validateNombres = (value) => {
     const nameRegex = /^[a-zA-Z\s]*$/;
     if (!nameRegex.test(value)) {
-      setErrorMessage((prev) => ({ ...prev, nombres: "El nombre solo puede contener letras" }));
+      setErrorMessage((prev) => ({
+        ...prev,
+        nombres: "El nombre solo puede contener letras",
+      }));
       return;
     } else {
       setErrorMessage((prev) => ({ ...prev, nombres: "" }));
@@ -53,10 +62,16 @@ function Register({ refreshData }) {
   const validateDni = (value) => {
     const dniRegex = /^\d*$/;
     if (!dniRegex.test(value)) {
-      setErrorMessage((prev) => ({ ...prev, dni: "El DNI solo puede contener números" }));
+      setErrorMessage((prev) => ({
+        ...prev,
+        dni: "El DNI solo puede contener números",
+      }));
       return;
     } else if (value.length > 8) {
-      setErrorMessage((prev) => ({ ...prev, dni: "El DNI debe tener exactamente 8 dígitos" }));
+      setErrorMessage((prev) => ({
+        ...prev,
+        dni: "El DNI debe tener exactamente 8 dígitos",
+      }));
       return;
     } else {
       setErrorMessage((prev) => ({ ...prev, dni: "" }));
@@ -68,7 +83,10 @@ function Register({ refreshData }) {
     setEmail(value);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(value)) {
-      setErrorMessage((prev) => ({ ...prev, email: "El correo electrónico no es válido" }));
+      setErrorMessage((prev) => ({
+        ...prev,
+        email: "El correo electrónico no es válido",
+      }));
     } else {
       setErrorMessage((prev) => ({ ...prev, email: "" }));
     }
@@ -80,17 +98,26 @@ function Register({ refreshData }) {
     let hasError = false;
 
     if (!nombres) {
-      setErrorMessage((prev) => ({ ...prev, nombres: "El nombre es obligatorio" }));
+      setErrorMessage((prev) => ({
+        ...prev,
+        nombres: "El nombre es obligatorio",
+      }));
       hasError = true;
     }
 
     if (!dni || dni.length !== 8) {
-      setErrorMessage((prev) => ({ ...prev, dni: "El DNI debe tener exactamente 8 dígitos" }));
+      setErrorMessage((prev) => ({
+        ...prev,
+        dni: "El DNI debe tener exactamente 8 dígitos",
+      }));
       hasError = true;
     }
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setErrorMessage((prev) => ({ ...prev, email: "El correo electrónico es obligatorio y debe ser válido" }));
+      setErrorMessage((prev) => ({
+        ...prev,
+        email: "El correo electrónico es obligatorio y debe ser válido",
+      }));
       hasError = true;
     }
 
@@ -105,12 +132,18 @@ function Register({ refreshData }) {
     }
 
     if (!password) {
-      setErrorMessage((prev) => ({ ...prev, password: "La contraseña es obligatoria" }));
+      setErrorMessage((prev) => ({
+        ...prev,
+        password: "La contraseña es obligatoria",
+      }));
       hasError = true;
     }
 
     if (hasError) {
-      setErrorMessage((prev) => ({ ...prev, general: "Todos los campos son obligatorios" }));
+      setErrorMessage((prev) => ({
+        ...prev,
+        general: "Todos los campos son obligatorios",
+      }));
       return;
     }
 
@@ -146,8 +179,8 @@ function Register({ refreshData }) {
         rol: "",
         sede: "",
         password: "",
-        general: ""
-      })
+        general: "",
+      });
       onClose();
       refreshData();
     } catch (error) {
@@ -169,7 +202,7 @@ function Register({ refreshData }) {
         leftIcon={<AddUserIcon></AddUserIcon>}
         onClick={onOpen}
       >
-        Registrar Usuario
+        Registrar Empleado
       </Button>
 
       {/* Modal */}
@@ -181,63 +214,84 @@ function Register({ refreshData }) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Crear cuenta</ModalHeader>
+          <ModalHeader>Registrar nuevo empleado</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Nombre Completo</FormLabel>
-              <Input 
-              ref={initialRef} 
-              value={nombres}
-              onChange={(e) => validateNombres(e.target.value)}
-              placeholder="Ingrese Nombre Completo" />
+              <Input
+                ref={initialRef}
+                value={nombres}
+                onChange={(e) => validateNombres(e.target.value)}
+                placeholder="Ingrese Nombre Completo"
+              />
               {errorMessage.nombres && (
-                <p style={{ color: "red", marginTop: "5px" }}>{errorMessage.nombres}</p>
+                <p style={{ color: "red", marginTop: "5px" }}>
+                  {errorMessage.nombres}
+                </p>
               )}
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>DNI</FormLabel>
               <Input
-              //maxLength={8} 
-              value={dni}
-              onChange={(e) => validateDni(e.target.value)}
-              placeholder="Ingrese DNI" />
+                //maxLength={8}
+                value={dni}
+                onChange={(e) => validateDni(e.target.value)}
+                placeholder="Ingrese DNI"
+              />
               {errorMessage.dni && (
-                <p style={{ color: "red", marginTop: "5px" }}>{errorMessage.dni}</p>
+                <p style={{ color: "red", marginTop: "5px" }}>
+                  {errorMessage.dni}
+                </p>
               )}
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Email</FormLabel>
-              <Input 
-              value={email}
-              onChange={(e) => validateEmail(e.target.value)}
-              placeholder="Ingrese Correo Electronico" />
+              <Input
+                value={email}
+                onChange={(e) => validateEmail(e.target.value)}
+                placeholder="Ingrese Correo Electronico"
+              />
               {errorMessage.email && (
-                <p style={{ color: "red", marginTop: "5px" }}>{errorMessage.email}</p>
+                <p style={{ color: "red", marginTop: "5px" }}>
+                  {errorMessage.email}
+                </p>
               )}
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Rol</FormLabel>
-              <Select value={rol} onChange={(e) => setRol(e.target.value)} placeholder="Seleccione un rol">
+              <Select
+                value={rol}
+                onChange={(e) => setRol(e.target.value)}
+                placeholder="Seleccione un rol"
+              >
                 <option value="Administrador">Administrador</option>
                 <option value="Contador">Contador</option>
               </Select>
               {errorMessage.rol && (
-                <p style={{ color: "red", marginTop: "5px" }}>{errorMessage.rol}</p>
+                <p style={{ color: "red", marginTop: "5px" }}>
+                  {errorMessage.rol}
+                </p>
               )}
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Sede</FormLabel>
-              <Select value={sede} onChange={(e) => setSede(e.target.value)} placeholder="Seleccione una sede">    
+              <Select
+                value={sede}
+                onChange={(e) => setSede(e.target.value)}
+                placeholder="Seleccione una sede"
+              >
                 <option value="Sede 1">Sede 1 </option>
                 <option value="Sede 2">Sede 2</option>
               </Select>
               {errorMessage.sede && (
-                <p style={{ color: "red", marginTop: "5px" }}>{errorMessage.sede}</p>
+                <p style={{ color: "red", marginTop: "5px" }}>
+                  {errorMessage.sede}
+                </p>
               )}
             </FormControl>
 
@@ -261,20 +315,25 @@ function Register({ refreshData }) {
                 placeholder="Ingrese clave de acceso al almacenamiento"
               />
               {errorMessage.password && (
-                <p style={{ color: "red", marginTop: "5px" }}>{errorMessage.password}</p>
+                <p style={{ color: "red", marginTop: "5px" }}>
+                  {errorMessage.password}
+                </p>
               )}
             </FormControl>
 
             {errorMessage.general && (
-               <p style={{ color: "red", marginTop: "10px" }}>{errorMessage.general}</p>
+              <p style={{ color: "red", marginTop: "10px" }}>
+                {errorMessage.general}
+              </p>
             )}
-
           </ModalBody>
           <ModalFooter>
             <Button onClick={onClose} mr={3}>
               Cancelar
             </Button>
-            <Button colorScheme="green" onClick={handleRegister}>Registrar</Button>
+            <Button colorScheme="green" onClick={handleRegister}>
+              Registrar
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

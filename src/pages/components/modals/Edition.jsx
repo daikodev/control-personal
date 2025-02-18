@@ -154,7 +154,7 @@ function Edition({ employee, estadoEmpleado }) {
       <Modal isOpen={isOpen} onClose={closeModal} initialFocusRef={initialRef}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Editar Datos</ModalHeader>
+          <ModalHeader>Editar datos</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl>
