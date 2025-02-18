@@ -125,8 +125,16 @@ function Edition({ employee, estadoEmpleado }) {
 
   return (
     <div>
-      <Button onClick={openEditModal}>
-        <EditIcon me="1.5" /> Editar
+      <Button
+        bg="white"
+        color="black"
+        variant="outline"
+        leftIcon={<EditIcon></EditIcon>}
+        me="2"
+        className="mt-2 mt-sm-0 mt-md-0 mt-lg-0 mt-xl-0 mt-xxl-0"
+        onClick={openEditModal}
+      >
+        Editar
       </Button>
 
       {/* <Menu>
