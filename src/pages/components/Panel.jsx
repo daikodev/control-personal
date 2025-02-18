@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import {
+  getEmployeeByDNI,
   getEmployeesActive,
   getEmployeesActiveDownload,
 } from "../../services/employeeService";
@@ -29,6 +30,7 @@ function Panel() {
   // Paginación
   const [pageActive, setPageActive] = useState(0);
   const [totalPagesActive, setTotalPagesActive] = useState(1);
+  const [searchedEmployee, setSearchedEmployee] = useState(null);
 
   useEffect(() => {
     handleEmployeesActive(pageActive);
@@ -102,18 +104,34 @@ function Panel() {
   };
 
   const generateExcel = async () => {
-    const data = await getEmployeesActiveDownload();
+    try {
+      const data = await getEmployeesActiveDownload();
 
-    const ws = XLSX.utils.json_to_sheet(data);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Reporte de Empleados");
+      const ws = XLSX.utils.json_to_sheet(data);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Reporte de Empleados");
 
-    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-    const dataBlob = new Blob([excelBuffer], {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    });
+      const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+      const dataBlob = new Blob([excelBuffer], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
 
-    saveAs(dataBlob, "reporte-empleados.xlsx");
+      saveAs(dataBlob, "reporte-empleados.xlsx");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const findEmployee = async (event) => {
+    if (event.key === "Enter") {
+      try {
+        const dni = event.target.value;
+        const employee = await getEmployeeByDNI({ dni });
+        setSearchedEmployee(employee);
+      } catch (err) {
+        console.error(err);
+      }
+    }
   };
 
   return (
@@ -156,13 +174,16 @@ function Panel() {
             </InputLeftElement>
             <Input
               className="form-control form-control-sm"
-              placeholder="Buscar empleado"
+              placeholder="Buscar empleado por DNI"
+              onKeyDown={findEmployee}
             />
           </InputGroup>
         </div>
       </div>
 
-      <EmployeeTable employees={employeesActive}></EmployeeTable>
+      <EmployeeTable
+        employees={searchedEmployee ? [searchedEmployee] : employeesActive}
+      ></EmployeeTable>
       <Pagination
         pageCount={totalPagesActive}
         onPageChange={setPageActive}
