@@ -160,7 +160,8 @@ function Register({ refreshData }) {
     try {
       await saveEmployee(employee);
       toast({
-        title: "El empleado se registró correctamente",
+        title: "Empleado registrado",
+        description: "Los datos del empleado se registraron correctamente.",
         status: "success",
         duration: 2000,
         isClosable: true,
