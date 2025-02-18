@@ -41,3 +41,15 @@ export const getEmployeesActiveDownload = async () => {
 
   return await response.json();
 };
+export const updateEmployee = async (employee) => {
+  const url = `${API_URL}/actualizar/${employee.id}`;
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(employee)
+  });
+  if (!response.ok) throw new Error("Error al actualizar el empleado");
+  return await response.json();
+};
