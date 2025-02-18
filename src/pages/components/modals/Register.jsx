@@ -46,6 +46,8 @@ function Register({ refreshData }) {
       setErrorMessage((prev) => ({ ...prev, nombres: "" }));
     }
     setNombres(value);
+    // Limpiar mensaje de error del DNI
+    setErrorMessage((prev) => ({ ...prev, dni: "" }));
   };
 
   const validateDni = (value) => {
@@ -70,6 +72,8 @@ function Register({ refreshData }) {
     } else {
       setErrorMessage((prev) => ({ ...prev, email: "" }));
     }
+    // Limpiar mensaje de error del DNI
+    setErrorMessage((prev) => ({ ...prev, dni: "" }));
   };
 
   const handleRegister = async () => {
