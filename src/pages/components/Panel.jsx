@@ -124,12 +124,17 @@ function Panel() {
 
   const findEmployee = async (event) => {
     if (event.key === "Enter") {
-      try {
-        const dni = event.target.value;
-        const employee = await getEmployeeByDNI({ dni });
-        setSearchedEmployee(employee);
-      } catch (err) {
-        console.error(err);
+      const dni = event.target.value.trim();
+      if (dni === "") {
+        handleEmployeesActive(pageActive);
+      } else {
+        try {
+          const data = await getEmployeeByDNI({ dni });
+          setEmployeesActive([data]);
+          setTotalPagesActive(1);
+        } catch (err) {
+          console.error(err);
+        }
       }
     }
   };
