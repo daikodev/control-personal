@@ -49,16 +49,67 @@ function Edition({ employee, estadoEmpleado, refreshData }) {
   const openEditModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    if (/^[a-zA-Z\s]*$/.test(value)) { // Solo permite letras y espacios
+      setNombres(value);
+      setErrorMessage((prev) => ({ ...prev, nombres: "" })); // Borra el error si es válido
+    } else {
+      setErrorMessage((prev) => ({
+        ...prev,
+        nombres: "El nombre solo puede contener letras",
+      }));
+    }
+  };
+  const handleDniChange = (e) => {
+    const value = e.target.value;
+    const dniRegex = /^\d*$/;
+
+    if (!dniRegex.test(value)) {
+        setErrorMessage((prev) => ({
+            ...prev,
+            dni: "El DNI solo puede contener números",
+        }));
+        return;
+    } else if (value.length > 8) {
+        setErrorMessage((prev) => ({
+            ...prev,
+            dni: "El DNI debe tener exactamente 8 dígitos",
+        }));
+        return;
+    } else {
+        setErrorMessage((prev) => ({ ...prev, dni: "" }));
+    }
+
+    setDni(value);
+};
+const handleEmailChange = (e) => {
+  const value = e.target.value;
+  setEmail(value);
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(value)) {
+      setErrorMessage((prev) => ({
+          ...prev,
+          email: "El correo electrónico no es válido",
+      }));
+  } else {
+      setErrorMessage((prev) => ({ ...prev, email: "" }));
+  }
+
+  // Limpiar mensaje de error del DNI
+  setErrorMessage((prev) => ({ ...prev, dni: "" }));
+};
+
   const handleSaveChanges = async () => {
     let hasError = false;
-    const newErrors = {};
-    if (!nombres.trim()) {
-      newErrors.nombres = "El nombre no puede estar vacío";
-      hasError = true;
-    } else if (/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/.test(nombres)) {
-      newErrors.nombres = "El nombre solo puede contener letras";
-      hasError = true;
-    }
+const newErrors = {};
+
+if (!nombres) {
+  newErrors.nombres = "El nombre es obligatorio";
+  hasError = true;
+}
 
     if (!dni.match(/^\d{1,8}$/)) {
       newErrors.dni = "El DNI debe tener mínimo 8 dígitos";
@@ -163,7 +214,7 @@ function Edition({ employee, estadoEmpleado, refreshData }) {
               <FormLabel>Nombre Completo</FormLabel>
               <Input
                 value={nombres}
-                onChange={(e) => setNombres(e.target.value)}
+                onChange={handleNameChange}
                 ref={initialRef}
                 placeholder="Ingrese Nombre Completo"
               />
@@ -177,7 +228,7 @@ function Edition({ employee, estadoEmpleado, refreshData }) {
               <Input
                 maxLength={8}
                 value={dni}
-                onChange={(e) => setDni(e.target.value.replace(/[^0-9]/g, ""))} // Elimina caracteres no numéricos
+                onChange={handleDniChange} // Elimina caracteres no numéricos
                 placeholder="Ingrese DNI"
               />
               {errorMessage.dni && (
@@ -189,7 +240,7 @@ function Edition({ employee, estadoEmpleado, refreshData }) {
               <FormLabel>Email</FormLabel>
               <Input
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
                 placeholder="Ingrese Correo Electrónico"
               />
               {errorMessage.email && (
