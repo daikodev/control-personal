@@ -57,7 +57,7 @@ function Form() {
     const saveUser = localStorage.getItem("user");
 
     if (saveUser) {
-      navigate("/Dashboard");
+      navigate("/dashboard");
     }
   }, [navigate]);
 
