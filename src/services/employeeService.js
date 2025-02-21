@@ -1,5 +1,5 @@
 const API_URL =
-  "http://api-personal-bwg2ecdbczewgkcn.brazilsouth-01.azurewebsites.net/empleados";
+  "https://api-personal-bwg2ecdbczewgkcn.brazilsouth-01.azurewebsites.net/empleados";
 
 export const getEmployeesActive = async (page, size) => {
   const url = `${API_URL}/activos?page=${page}&size=${size}`;
