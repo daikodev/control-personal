@@ -23,7 +23,7 @@ pdfMake.addVirtualFileSystem(pdfFonts);
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 
-const ITEMS_PER_PAGE = 7;
+const ITEMS_PER_PAGE = 8;
 
 function Panel() {
   const [employeesActive, setEmployeesActive] = useState([]);
