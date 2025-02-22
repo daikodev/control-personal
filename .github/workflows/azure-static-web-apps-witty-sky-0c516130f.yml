@@ -10,6 +10,24 @@ on:
       - main
 
 jobs:
+  create_backup_branch:
+    runs-on: ubuntu-latest
+    name: Create Backup Branch
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Crear/Actualizar rama backup
+        run: |
+          git checkout -b backup || git checkout backup
+          git merge main --no-edit
+          git push origin backup
+
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
